@@ -1,0 +1,19 @@
+{
+  "name": "oj-boilerplate",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "esbuild src/index.ts --bundle --outfile=index.cjs --platform=node",
+    "postbuild": "cat index.cjs | clipboard",
+    "test": "npm run build && node index.cjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "clipboard-cli": "^3.0.0",
+    "esbuild": "^0.14.34"
+  }
+}
