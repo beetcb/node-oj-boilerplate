@@ -1,10 +1,11 @@
 {
-  "name": "oj-boilerplate",
+  "name": "oj-node",
   "version": "1.0.0",
   "type": "module",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "echo runing!",
     "build": "esbuild src/index.ts --bundle --outfile=index.cjs --platform=node",
     "postbuild": "cat index.cjs | clipboard",
     "test": "npm run build && node index.cjs"
