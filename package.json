@@ -9,14 +9,19 @@
     "dev": "echo runing!",
     "build": "esbuild src/index.ts --bundle --outfile=index.cjs --platform=node",
     "postbuild": "cat index.cjs | clipboard",
-    "test": "npm run build --ignore-scripts && node index.cjs"
+    "test": "npm run build --ignore-scripts && node index.cjs",
+    "jest": "jest"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@swc/core": "^1.2.165",
+    "@swc/jest": "^0.2.20",
+    "@types/jest": "^27.4.1",
     "@types/node": "^17.0.23",
     "clipboard-cli": "^3.0.0",
-    "esbuild": "^0.14.34"
+    "esbuild": "^0.14.34",
+    "jest": "^27.5.1"
   }
 }

@@ -38,7 +38,7 @@ function test(
     lineHandler,
   } = options;
 
-  let acc = [];
+  let acc: any[] = [];
 
   rl.on('line', (data) => {
     acc.push(lineHandler(data));
