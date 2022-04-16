@@ -4,16 +4,18 @@
   "type": "module",
   "description": "",
   "main": "index.js",
+  "types": "./src/g.d.ts",
   "scripts": {
     "dev": "echo runing!",
     "build": "esbuild src/index.ts --bundle --outfile=index.cjs --platform=node",
     "postbuild": "cat index.cjs | clipboard",
-    "test": "npm run build && node index.cjs"
+    "test": "npm run build --ignore-scripts && node index.cjs"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/node": "^17.0.23",
     "clipboard-cli": "^3.0.0",
     "esbuild": "^0.14.34"
   }

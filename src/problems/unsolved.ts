@@ -168,16 +168,114 @@ function slideWindowOptions([nums1, nums2]) {
     (nums2.length - fwdIdx1)
   );
 }
-const testArgs: TestArgs = [
-  slideWindowOptions,
-  {
-    lineHandler: (data) => data.split(' '),
-    testInstanceHandler: (acc) => {
-      return [
-        acc[1].map((e) => Number(e)),
-        acc[3].map((e) => Number(e)),
-      ];
-    },
-  },
-];
+// const testArgs: TestArgs = [
+//   slideWindowOptions,
+//   {
+//     lineHandler: (data) => data.split(' '),
+//     testInstanceHandler: (acc) => {
+//       return [
+//         acc[1].map((e) => Number(e)),
+//         acc[3].map((e) => Number(e)),
+//       ];
+//     },
+//   },
+// ];
 
+function moveBot(moves: [string]) {
+  let [x, y] = [0, 0];
+  const moveToHandler = {
+    U: () => y++,
+    D: () => {
+      y--;
+    },
+    L: () => {
+      x--;
+    },
+    R: () => x++,
+  };
+
+  for (const move of moves) {
+    moveToHandler[move]();
+  }
+
+  return `(${x},${y})`;
+}
+
+// [ 1, 2, 3, 4, 5 ], 2
+function countPermutations(
+  instances: Array<[[number], number]>
+) {
+  // Impl C(n, k) -> select k from n
+  const C = (n, k) => {
+    if (n < k || k < 0) {
+      return 0;
+    }
+    if (n === k || k === 0) {
+      return 1;
+    }
+    if (k === 1 && n - k === 1) {
+      return n;
+    }
+
+    let temp = 1;
+    const gap =
+      Math.floor((n + 1) / 2) <= k ? k : n - k;
+    while (n > gap) {
+      temp *= n;
+      n--;
+    }
+    return temp;
+  };
+
+  const count = (nums: [number], k: number) => {
+    let [oddCount, evenCount] = [0, 0];
+
+    for (const num of nums) {
+      if (num % 2 === 0) {
+        evenCount++;
+        continue;
+      }
+      oddCount++;
+    }
+
+    const res =
+      C(evenCount, k) +
+      C(oddCount, 2) * C(evenCount, k - 2);
+    const mod = Math.pow(10, 9) + 7;
+
+    return res % mod;
+  };
+
+  return instances
+    .map(([nums, k]) => count(nums, k))
+    .join('\n');
+}
+
+// const testArgs: TestArgs = [
+//   countPermutations,
+//   {
+//     lineHandler: (nums) =>
+//       nums.split(' ').map((char) => Number(char)),
+//     testInstanceHandler: (input) => {
+//       const instancesLength = Number(
+//         input?.[0][0]
+//       );
+
+//       let instances = [];
+//       for (
+//         let i = 1;
+//         i < instancesLength * 2;
+//         i += 2
+//       ) {
+//         let [lenAndK, nums] = [
+//           input[i],
+//           input[i + 1],
+//         ];
+
+//         instances.push([nums, lenAndK[1]]);
+//       }
+
+//       return instances;
+//     },
+//   },
+// ];

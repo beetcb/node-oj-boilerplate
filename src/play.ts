@@ -1,3 +1,6 @@
-import type { TestArgs } from './oj';
+const testArgs: TestArgs = [
+  () => {},
+  { lineHandler: () => {} },
+];
 
 export default testArgs;
